@@ -1,0 +1,60 @@
+// Функція яка повертає масив випадклвих цілих чисел
+function getRandomArray(length, min, max) {
+   const randomArray = new Array(length);
+   for (let i = 0; i < randomArray.length; i++) {
+      randomArray[i] = Math.floor(min + Math.random() * (max - min + 1))
+   }
+   return randomArray;
+}
+
+//фуункція яка вираховує моду всіх переданих в неї аргументів
+function getModa(...numbers) {
+   let arrayNumber = numbers;
+   let result = arrayNumber.reduce((acc, curr) => {
+      if (acc[curr]) {
+         acc[curr] += 1
+      } else {
+         acc[curr] = 1
+      }
+      return acc;
+   }, {});
+   console.log(Object.keys(result).find((el) => {
+      return result[el] === Math.max(...Object.values(result))
+   }));
+}
+
+//функція яка рахує середнє арифметичне всіх переданих в неї аргументів
+function getAverage(...numbers) {
+   let integers = numbers.filter(index => Number.isInteger(index));
+   let result = 0;
+   for (let i = 0; i < integers.length; i++) {
+      result = result + integers[i];
+   }
+   return result / integers.length;
+}
+
+//функція яка фільтрує парні числа передані як аргументи функції
+const filterEvenNumbers = function (...numbers) {
+   let evenNumber = numbers.filter(function (item) {
+      return item % 2 !== 0;
+   })
+   return console.log(evenNumber);;
+}
+
+//функція яка порахує кількість чисел більших 0
+function countPositiveNumbers(...numbers) {
+   let positiveNumbers = numbers.filter(function (item) {
+      return item > 0;
+   })
+   return positiveNumbers.length;
+}
+
+//функція яка відфільтрує усі елементи в масиві та залишить тільки ті, які діляться на ціло на 5
+function getDividedByFive(...numbers) {
+   let dividedByFive = numbers.filter(function (item) {
+      return item % 5 === 0
+   })
+   return dividedByFive;
+}
+
+module.exports = filterEvenNumbers
